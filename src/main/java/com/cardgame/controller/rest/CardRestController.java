@@ -1,8 +1,6 @@
 package com.cardgame.controller.rest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +45,32 @@ public class CardRestController {
                 }
 
                 return result;
+        }
+
+        @PostMapping("/distributeCard")
+        public List<List<String>> distributeCards(@RequestBody List<List<String>> data) {
+
+                List<String> allCards = new ArrayList<>();
+                for (List<String> row : data) {
+                        allCards.addAll(row);
+                }
+
+                List<List<String>> players = new ArrayList<>();
+                int numPlayers = 4;
+                int cardsPerPlayer = allCards.size() / numPlayers;
+
+                for (int i = 0; i < numPlayers; i++) {
+                        List<String> playerHand = new ArrayList<>();
+
+                        for (int j = 0; j < cardsPerPlayer; j++) {
+                                playerHand.add(allCards.get(i + j * numPlayers));
+                        }
+
+                        players.add(playerHand);
+                }
+
+                return players;
+
         }
 
 }

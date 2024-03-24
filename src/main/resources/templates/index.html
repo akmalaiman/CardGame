@@ -11,6 +11,8 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 <!--ajax-->
                 <script type="text/javascript" th:src="@{/js/ajax.js}"></script>
+                <!--script-->
+                <script type="text/javascript" th:src="@{/js/script.js}"></script>
         </head>
         <body>
                 <!--Start of Top Navbar-->
@@ -29,7 +31,7 @@
                         <div class="row align-items-md-stretch">
                                 <div class="col-md-12">
                                         <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-                                                <h2 class="text-center">Startting Card</h2>
+                                                <h2 class="text-center">Starting Card</h2>
                                                 <div class="text-center">
                                                         <table id="startCardTable" class="table">
                                                                 <tbody>
@@ -49,11 +51,24 @@
                                         <div class="h-100 p-5 bg-body-tertiary border rounded-3">
                                                 <h2 class="text-center">Shuffled Card</h2>
                                                 <div class="text-center">
-                                                        <div id="shuffledCard"></div>
                                                         <table id="shuffledCardTable" class="table">
                                                                 <tbody></tbody>
                                                         </table>
-                                                        <button class="btn btn-primary" onclick="shuffleCard();">Distribute Card</button>
+                                                        <button class="btn btn-primary" onclick="getCard();">Distribute Card</button>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="b-example-divider"><br></div>
+                        <div class="row align-items-md-stretch">
+                                <div class="col-md-12">
+                                        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                                                <h2 class="text-center">Player Card</h2>
+                                                <div class="text-center">
+                                                        <table id="playerCardTable" class="table">
+                                                                <tbody></tbody>
+                                                        </table>
+                                                        <button class="btn btn-primary" onclick="distributeCard();">Distribute Card</button>
                                                 </div>
                                         </div>
                                 </div>
@@ -63,7 +78,6 @@
         </body>
         <script type="text/javascript">
                 $(document).ready(function () {
-                        // displayInitialCard();
                 });
         </script>
 </html>
