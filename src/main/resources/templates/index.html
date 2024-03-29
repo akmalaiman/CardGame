@@ -54,7 +54,7 @@
                                                         <table id="shuffledCardTable" class="table">
                                                                 <tbody></tbody>
                                                         </table>
-                                                        <button class="btn btn-primary" onclick="getCard();">Distribute Card</button>
+                                                        <button class="btn btn-primary" onclick="getShuffledCard();">Distribute Card</button>
                                                 </div>
                                         </div>
                                 </div>
@@ -68,8 +68,17 @@
                                                         <table id="playerCardTable" class="table">
                                                                 <tbody></tbody>
                                                         </table>
-                                                        <button class="btn btn-primary" onclick="distributeCard();">Distribute Card</button>
+                                                        <button class="btn btn-primary" onclick="getPlayerCard();">Check Winner</button>
                                                 </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="b-example-divider"><br></div>
+                        <div class="row align-items-md-stretch">
+                                <div class="col-md-12">
+                                        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                                                <h2 class="text-center">Winner</h2>
+                                                <div id="winner" class="text-center"></div>
                                         </div>
                                 </div>
                         </div>

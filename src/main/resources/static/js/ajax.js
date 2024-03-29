@@ -52,3 +52,18 @@ function distributeCard(data) {
                 }
         });
 }
+
+function findWinner(data) {
+        $.ajax({
+                url: "/cardGame/api/findWinner",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function(response){
+                        $("#winner").text(response);
+                },
+                error: function(xhr, status, error) {
+                        console.error("Error occurred in findWinner(): " + error);
+                }
+        });
+}

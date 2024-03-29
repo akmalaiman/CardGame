@@ -2,10 +2,7 @@ package com.cardgame.controller.rest;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -71,6 +68,60 @@ public class CardRestController {
 
                 return players;
 
+        }
+
+        @PostMapping("/findWinner")
+        public String findWinner(@RequestBody List<List<String>> data) {
+
+                String winner = "No winner";
+
+                if (!data.isEmpty()) {
+                        Map<String, Integer> playerCardCounts = new HashMap<>();
+
+                        for (List<String> playerHand : data) {
+                                Map<Character, Integer> cardCounts = new HashMap<>();
+
+                                // Count occurrences of each card number in the player's hand
+                                for (String card : playerHand) {
+                                        char cardNumber = card.charAt(0);
+                                        cardCounts.put(cardNumber, cardCounts.getOrDefault(cardNumber, 0) + 1);
+                                }
+
+                                // Find the maximum count of cards of the same number for the player
+                                int maxCount = 0;
+                                for (int count : cardCounts.values()) {
+                                        maxCount = Math.max(maxCount, count);
+                                }
+
+                                // Update the maximum count for the player
+                                playerCardCounts.put(playerHand.get(0), maxCount);
+                        }
+
+                        // Find the player with the maximum count of cards of the same number
+                        int maxCount = 0;
+                        for (int count : playerCardCounts.values()) {
+                                maxCount = Math.max(maxCount, count);
+                        }
+
+                        // Determine the winner(s)
+                        StringBuilder winners = new StringBuilder();
+                        for (Map.Entry<String, Integer> entry : playerCardCounts.entrySet()) {
+                                if (entry.getValue() == maxCount) {
+                                        if (winners.length() > 0) {
+                                                winners.append(", ");
+                                        }
+
+                                        String player = entry.getKey();
+                                        player = player.substring(0, player.length() - 2);
+
+                                        winners.append(player);
+                                }
+                        }
+
+                        winner = (winners.length() > 0) ? winners.toString() : "No winner";
+                }
+
+                return "Winner: " + winner;
         }
 
 }
